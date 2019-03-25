@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="/static/css/style.css" rel="stylesheet">
+    <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script type="text/javascript">
+    $(document).ready(function() {
+
+        // $("#generate-string").click(function(e) {
+        //   $.post("/generator", {"length": $("input[name='length']").val()})
+        //    .done(function(string) {
+        //     $("#the-string").show();
+        //     $("#the-string input").val(string);
+        //   });
+        //   e.preventDefault();
+        // });
+
+        //  $("#replace-string").click(function(e) {
+        $.ajax({
+                type: "GET",
+                url: "/generator"
+                // data: {"another_string": $("#the-string input").val()}
+            })
+            .done(function(string) {
+                //console.log(string);
+                string = JSON.parse(string);
+                // debugger;
+                var trHTML = "<tbody>";
+                for (var i = 0; i < 10; i++) {
+                    //debugger;
+                    trHTML += '<tr><th>' + string[i].SC_CODE +'</th><td>' + string[i].SC_NAME +'</td><td>' + string[i].SC_GROUP +'</td><td>' + string[i].SC_TYPE +'</td><td>' + string[i].OPEN +'</td><td>' + string[i].HIGH +'</td><td>' + string[i].LOW +'</td><td>' + string[i].CLOSE +'</td><td>' + string[i].LAST +'</td><td>' + string[i].PREVCLOSE +'</td><td>' + string[i].NO_TRADES + '</td><td>' + string[i].NO_OF_SHRS + '</td><td>' + string[i].NET_TURNOV + '</td></tr>';
+                }
+                 trHTML += "</tbody>";
+                $('#records_table').append(trHTML);
+               // alert("Replaced!");
+            });
+        // e.preventDefault();
+        //    });
+
+        // $("#delete-string").click(function(e) {
+        //   $.ajax({
+        //     type: "DELETE",
+        //     url: "/generator"
+        //   })
+        //   .done(function() {
+        //     $("#the-string").hide();
+        //   });
+        //   e.preventDefault();
+        // });
+
+    });
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <table id="records_table" class="table" style="width:100%">
+          <thead>
+    <tr>
+      <th scope="col">Code</th>
+      <th scope="col">Name</th>
+      <th scope="col">Group</th>
+      <th scope="col">Type</th>
+      <th scope="col">Open</th>
+      <th scope="col">High</th>
+      <th scope="col">Low</th>
+      <th scope="col">Close</th>
+      <th scope="col">Last</th>
+      <th scope="col">PrevClose</th>
+      <th scope="col">No Of Trades</th>
+      <th scope="col">No Of Shares</th>
+      <th scope="col">Net Turnover</th>
+    </tr>
+  </thead>
+            
+        </table>
+    </div>
+</body>
+
+</html>
