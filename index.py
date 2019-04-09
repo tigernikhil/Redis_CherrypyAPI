@@ -38,7 +38,8 @@ import time, ssl
 # print ()
 # print ("Current date and time using isoformat:")
 # print (now.isoformat())
-REDIS_HOST = 'localhost'
+#REDIS_HOST = 'zerodhaapp.herokuapp.com'
+REDIS_HOST = os.getenv('REDIS_URL', 'localhost')
 
 def read_csv_data(csv_file, ik, iv):
 	with open(csv_file, encoding='utf-8') as csvf:
@@ -188,6 +189,10 @@ class StringGeneratorWebService(object):
 
 if __name__ == '__main__':
 	conf = {
+        'global': {
+            'server.socket_host':  '0.0.0.0',
+            'server.socket_port':  int(os.environ.get('PORT', '5000'))
+        },
 		'/': {
 			'tools.sessions.on': True,
 			'tools.staticdir.root': os.path.abspath(os.getcwd())
