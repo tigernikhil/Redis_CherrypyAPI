@@ -48,7 +48,7 @@
             })
                 .done(function(string) {
                     string = JSON.parse(string);
-                    debugger;
+                  //  debugger;
                     document.getElementById("records_table").getElementsByTagName("tbody")[0].remove()
                     
                     var trHTML = "<tbody>";
@@ -72,7 +72,7 @@
                 data: { "another_string": $("#name").val() }
             })
             .done(function(string) {
-                debugger;
+             //   debugger;
                 string = JSON.parse(string);
                     document.getElementById("records_table").getElementsByTagName("tbody")[0].remove()
                 //$("#the-string").hide();
