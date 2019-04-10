@@ -1,2 +1,1 @@
-require: conda install cherrypy
-web: python index.py
+web: python3 app.py
