@@ -2,7 +2,7 @@ import zipfile, urllib.request, shutil
 import datetime, pdb
 from datetime import timedelta
 import sys, os
-import fileinput
+import fileinput, urlparse
 import csv, redis, json
 import sys, cherrypy
 import random
