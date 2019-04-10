@@ -93,6 +93,7 @@ def find_bad_qn(a, url, file_name, fileName):
 					for head in header:
 						conn.hset(hashKey, head, row[index])
 						index += 1
+						print(conn.hgetall(hashKey))
 
 		# ////we commented this code
 
