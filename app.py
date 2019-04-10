@@ -56,7 +56,7 @@ def find_bad_qn(a, url, file_name, fileName):
 	try:
 		# pdb.set_trace()
 		# redis_host = os.getenv('REDIS_URL', 'localhost')
-		conn = redis.StrictRedis.from_url(REDIS_HOST, charset="utf-8", decode_responses=True)
+		conn = redis.Redis(host = REDIS_HOST, charset="utf-8", decode_responses=True)
 		# context = ssl._create_unverified_context()
 		# resp = urllib.request.urlopen(url, context=context)
 		context = ssl._create_unverified_context()
@@ -76,6 +76,7 @@ def find_bad_qn(a, url, file_name, fileName):
 	# with open(fileName) as csv_file:
 	# 	csv_reader = csv.reader(csv_file, delimiter=',')
 	# 	line_count = 0
+		conn.flushdb()
 		with open(fileName) as csv_file:
 			csv_reader = csv.reader(csv_file, delimiter=',')
 			line_count = 0
@@ -93,7 +94,7 @@ def find_bad_qn(a, url, file_name, fileName):
 					for head in header:
 						conn.hset(hashKey, head, row[index])
 						index += 1
-						print(conn.hgetall(hashKey))
+						# print(conn.hgetall(hashKey))
 
 		# ////we commented this code
 
@@ -216,7 +217,7 @@ class StringGeneratorWebService(object):
 	def POST(self, another_string):
 		# pdb.set_trace()
 		dataShow = []
-		conn = redis.StrictRedis.from_url(host=REDIS_HOST, decode_responses=True)
+		conn = redis.StrictRedis.from_url(REDIS_HOST, decode_responses=True)
 		val = "*" + another_string.upper() + "*"
 		count = 0
 		for user in conn.keys(val):
