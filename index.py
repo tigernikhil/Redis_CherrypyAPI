@@ -58,7 +58,7 @@ def find_bad_qn(a, url, file_name):
 			shutil.copyfileobj(response, out_file)
 			# pdb.set_trace()
 			with zipfile.ZipFile(file_name) as zf:
-				zf.extractall('Files')
+				zf.extractall()
 		return 0
 	except:
 		return 1
@@ -68,10 +68,10 @@ def main():
 	day = '%02d' % now.day
 	month = '%02d' % now.month
 	year = '%02d' % now.year
-	fileName = 'Files/EQ' + day + month + year[2:4] + '.csv'
+	fileName = 'EQ' + day + month + year[2:4] + '.csv'
 	# pdb.set_trace()
 	url = 'https://www.bseindia.com/download/BhavCopy/Equity/EQ'+ day + month + year[2:4] +'_CSV.ZIP'
-	file_name = 'Files/myzip.zip'
+	file_name = 'myzip.zip'
 	countx = 0
 	for i in range(298314,298346):
 		check = find_bad_qn(i, url, file_name)
@@ -82,7 +82,7 @@ def main():
 				day = '%02d' % now.day
 				month = '%02d' % now.month
 				year = '%02d' % now.year
-				fileName = 'Files/EQ' + day + month + year[2:4] + '.csv'
+				fileName = 'EQ' + day + month + year[2:4] + '.csv'
 				# pdb.set_trace()
 				url = 'https://www.bseindia.com/download/BhavCopy/Equity/EQ'+ day + month + year[2:4] +'_CSV.ZIP'
 		else:
