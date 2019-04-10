@@ -2,7 +2,7 @@ import zipfile, urllib.request, shutil
 import datetime, pdb
 from datetime import timedelta
 import sys, os
-import fileinput, urlparse
+import fileinput
 import csv, redis, json
 import sys, cherrypy
 import random
@@ -40,7 +40,7 @@ import time, ssl
 # print ("Current date and time using isoformat:")
 # print (now.isoformat())
 #REDIS_HOST = 'zerodhaapp.herokuapp.com'
-REDIS_HOST = urlparse.urlparse(os.environ.get('REDISCLOUD_URL'))
+REDIS_HOST = os.environ.get('REDISCLOUD_URL')
 
 def read_csv_data(csv_file, ik, iv):
 	with open(csv_file, encoding='utf-8') as csvf:
