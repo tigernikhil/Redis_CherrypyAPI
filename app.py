@@ -55,8 +55,8 @@ def store_data(conn, data):
 def find_bad_qn(a, url, file_name, fileName):
 	try:
 		# pdb.set_trace()
-		redis_host = os.getenv('REDIS_URL', 'localhost')
-		conn = redis.StrictRedis(redis_host, charset="utf-8", decode_responses=True)
+		# redis_host = os.getenv('REDIS_URL', 'localhost')
+		conn = redis.StrictRedis(REDIS_HOST, charset="utf-8", decode_responses=True)
 		# context = ssl._create_unverified_context()
 		# resp = urllib.request.urlopen(url, context=context)
 		context = ssl._create_unverified_context()
@@ -178,7 +178,7 @@ class StringGeneratorWebService(object):
 
 	@cherrypy.tools.accept(media='text/plain')
 	def GET(self):
-		conn = redis.StrictRedis(host=REDIS_HOST, decode_responses=True)
+		conn = redis.StrictRedis(REDIS_HOST, charset="utf-8", decode_responses=True)
 		# namevaluex = conn.hgetall('500002')
 		# namevaluextest = conn.hgetall()
 		# print(namevaluex['SC_CODE'])
