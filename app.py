@@ -102,6 +102,8 @@ def find_bad_qn(a, url, file_name, fileName):
 		# 	# pdb.set_trace()
 		# 	with zipfile.ZipFile(file_name) as zf:
 		# 		zf.extractall()
+		os.remove(fileName)
+		os.remove(file_name)
 		return 0
 	except:
 		return 1
@@ -173,7 +175,7 @@ class StringGenerator:
 
 class StringGeneratorWebService(object):
 	exposed = True
-	
+
 	@cherrypy.tools.accept(media='text/plain')
 	def GET(self):
 		conn = redis.StrictRedis(host=REDIS_HOST, decode_responses=True)
