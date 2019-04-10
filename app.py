@@ -178,7 +178,7 @@ class StringGeneratorWebService(object):
 
 	@cherrypy.tools.accept(media='text/plain')
 	def GET(self):
-		conn = redis.StrictRedis.from_url(REDIS_HOST, charset="utf-8", decode_responses=True)
+		conn = redis.StrictRedis(REDIS_HOST, charset="utf-8", decode_responses=True)
 		# namevaluex = conn.hgetall('500002')
 		# namevaluextest = conn.hgetall()
 		# print(namevaluex['SC_CODE'])
