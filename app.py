@@ -40,7 +40,7 @@ import time, ssl
 # print ("Current date and time using isoformat:")
 # print (now.isoformat())
 #REDIS_HOST = 'zerodhaapp.herokuapp.com'
-REDIS_HOST = os.getenv('REDIS_URL', 'localhost')
+REDIS_HOST = urlparse.urlparse(os.environ.get('REDISCLOUD_URL'))
 
 def read_csv_data(csv_file, ik, iv):
 	with open(csv_file, encoding='utf-8') as csvf:
@@ -178,7 +178,7 @@ class StringGeneratorWebService(object):
 
 	@cherrypy.tools.accept(media='text/plain')
 	def GET(self):
-		conn = redis.StrictRedis(REDIS_HOST, charset="utf-8", decode_responses=True)
+		conn = redis.StrictRedis.from_url(REDIS_HOST, charset="utf-8", decode_responses=True)
 		# namevaluex = conn.hgetall('500002')
 		# namevaluextest = conn.hgetall()
 		# print(namevaluex['SC_CODE'])
